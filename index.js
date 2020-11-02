@@ -1,8 +1,15 @@
-const realNumber = 34
+function getUserGuess () {
+    const stringvalue = document.getElementById('user-input').nodeValue
+    return parseInt(stringvalue, 10)
+}
 
-let guess = document.getElementById("user-input").Value
-
-
+document.addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        const guess = getGuess(
+            console.log(guess)
+        )
+    }
+})
 
 function closeOrNot(guess) {
     if (guess < realNumber) {
@@ -15,9 +22,4 @@ function closeOrNot(guess) {
         return "You guessed the right number!"
     }
 }
-
-document.getElementById("user-input").onkeyup = closeOrNot
-
-
-console.log(closeOrNot(guess))
 
