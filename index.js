@@ -11,7 +11,7 @@ document.addEventListener('keyup', function(event) {
     }
 })
 
-function closeOrNot(guess) {
+function setMessage(msg) {
     if (guess < realNumber) {
         return "too low!"
     }
