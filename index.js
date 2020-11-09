@@ -1,46 +1,49 @@
-//gör ett random nummer
+let input = document.getElementById("user-input")
+let guessAmount = []
+let guessHistory = []
+
 function randomInt() {
     return Math.floor(Math.random() * 100)
 }
 
 
-//secretNumber = randomnummer och loggar secret number
-const secretNumber = randomInt
-console.log(secretNumber())
+var secretNumber = randomInt()
 
-
-/*tar user guess från "user-input" i html filen och ger den namnet
-"stringvalue", "stringvalue" konverteras sedan till ett number*/
 function getUserGuess() {
     const stringValue = document.getElementById('user-input').value
-    return parseInt(stringValue, 10)
+    return parseInt(stringValue)
 }
 
-
-/*
-lyssnar på eventet "keyup" på Enter knappen och deklarerar sedan "guess" som det som 
-användaren skrev in i "user-input" fast konverterat till en siffra
-*/
 document.addEventListener('keyup', function (event) {
     if (event.key === 'Enter') {
-        const guess = getUserGuess()
-        console.log(guess)
+        checkGuess()
     }
 })
 
-if (guess < secretNumber) {
-    setMessage('too  low!')
+function checkGuess() {
+    let guess = getUserGuess()
+    console.log(guess)
+    addGuess(guess)
+    if (guess < secretNumber) {
+        setMessage("too low!")
+        console.log("too low")
+    } else if (guess > secretNumber) {
+        setMessage("too high!")
+        console.log("too high")
+    } else {
+        setMessage("Correct!")
+        console.log("Correct")
+    }
+    document.getElementById('user-input').value = ''
 }
-if (guess > secretNumber) {
-    setMessage('too high!')
-}
-if (guess === secretNumber) {
-    setMessage('right answer!')
-}
+
 function setMessage(msg) {
-    document.getElementById("message").innerText = msg
+    document.getElementById("message").innerHTML = msg
 }
 
-
-
-
+function addGuess(guess) {
+    document.getElementById("guessAmount").innerHTML = "Amount of guesses: " + guessAmount.unshift(guess)
+}
+function addGuessHistory(guess) {
+    document.getElementById("guessHistory").innerHTML = "Guess history:" + guessHistory.push(guess)
+}
